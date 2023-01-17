@@ -5,6 +5,8 @@ fn main() {
 
   // Program Counter: The current instruction being executed.
   let mut pc: u16 = 0;
+
+  // Registers: v0 to vF
   let mut v: [u8; 0xF] = [0; 0xF];
 
   let program = fs::read("/home/andy/dev/learning/rust/chip8/roms/IBM Logo.ch8").unwrap();
@@ -21,16 +23,14 @@ fn main() {
   // Main execution loop.
   loop {
     let instruction = fetch_next_instruction(&program, pc);
-    //print_instruction(instruction);
-
     let instruction_group = instruction >> 12;
     print_instruction(instruction_group);
 
     match instruction_group {
-      // 0 (Clear Screen, +)
-      0x00 => {
+      // 0: Clear Screen, and more.
+      0x0 => {
         match instruction {
-          // 00E0 - Clear Screen
+          // 00E0: Clear Screen
           0x00E0 => {
             // TODO: Actually clear the screen.
             println!("Clear Screen");
@@ -40,12 +40,16 @@ fn main() {
 
       },
       // 1 Jump
-      0x01 => {
+      0x1 => {
         let address = get_nnn(instruction);
         println!("JUMP: {:03X}", address);
 
         pc = address;
       },
+      // 6 Set (Register)
+      0x6 => {
+        // TODO: Implement 6XNN Set Register
+      }
       _ => {}
     }
 
