@@ -7,6 +7,5 @@ fn main() {
 
   let mut vm = Chip8::new();
   vm.load("/home/andy/dev/learning/rust/chip8/roms/IBM Logo.ch8");
-  vm.debug();
   vm.run();
 }

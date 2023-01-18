@@ -41,10 +41,10 @@ impl Chip8 {
                 _ => {}
               }
             },
-            // 1 Jump
+            // 0x1NNN Jump to NNN
             0x1 => {
               let address = self.get_nnn(instruction);
-              println!("JUMP: {:03X}", address);
+              println!("JUMP: {:03X}", START_ADDRESS + address);
       
               self.pc = START_ADDRESS + address;
             },
