@@ -1,5 +1,7 @@
 mod registers;
 mod ram;
+mod execute;
+mod util;
 mod debug;
 
 /// The first accessable RAM address, leaving space for the font and historically the interpreter.
@@ -17,6 +19,9 @@ pub struct Chip8 {
 
     // The registers v0 to vF
     pub v: [u8; 0xF],
+
+    // Whether or not the VM is running.
+    is_running: bool,
 }
 
 impl Chip8 {
@@ -25,6 +30,7 @@ impl Chip8 {
             pc: START_ADDRESS,
             ram: vec!(0; RAM_SIZE as usize),
             v: [0; 0xF],
+            is_running: false,
         }
     }
 }
