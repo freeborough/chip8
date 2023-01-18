@@ -1,4 +1,6 @@
 use super::{Chip8, START_ADDRESS};
+use super::debug::output_instruction;
+use super::util::get_nnn;
 
 impl Chip8 {
     pub fn run(self: &mut Self) {
@@ -18,14 +20,10 @@ impl Chip8 {
         self.ram[self.pc as usize] as u16 * 256 + next_byte
     }
 
-    pub fn get_nnn(self: &mut Self, instruction: u16) -> u16 {
-        (instruction << 4) >> 4
-    }
-
     pub fn cycle(self: &mut Self) {
         let instruction = self.fetch_instruction();
         self.increment_pc();
-        self.debug_instruction(instruction);
+        output_instruction(instruction);
         
         let instruction_group = instruction >> 12;
 
@@ -43,7 +41,7 @@ impl Chip8 {
             },
             // 0x1NNN Jump to NNN
             0x1 => {
-              let address = self.get_nnn(instruction);
+              let address = get_nnn(instruction);
               println!("JUMP: {:03X}", START_ADDRESS + address);
       
               self.pc = START_ADDRESS + address;
