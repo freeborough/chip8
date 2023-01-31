@@ -62,6 +62,12 @@ impl Chip8 {
               println!("ADD {nn} to v{x}");
               self.v[x] = self.v[x].wrapping_add(nn);
             },
+            // 0xANNN Set Index register to NNN
+            0xA => {
+              let nnn = get_nnn(instruction);
+              println!("Set I to {nnn}");
+              self.i = nnn;
+            },
             _ => {}
           }
 

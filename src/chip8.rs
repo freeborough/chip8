@@ -20,6 +20,9 @@ pub struct Chip8 {
     /// The registers v0 to vF
     pub v: [u8; 0xF],
 
+    /// The index register.
+    pub i: u16,
+
     /// Whether or not the VM is running.
     is_running: bool,
 }
@@ -30,6 +33,7 @@ impl Chip8 {
             pc: START_ADDRESS,
             ram: vec!(0; RAM_SIZE as usize),
             v: [0; 0xF],
+            i: 0,
             is_running: false,
         }
     }
