@@ -60,7 +60,7 @@ impl Chip8 {
               let x = get_x(instruction) as usize;
               let nn = get_nn(instruction);
               println!("ADD {nn} to v{x}");
-              self.v[x] = add_u8(self.v[x], nn);
+              self.v[x] = self.v[x].wrapping_add(nn);
             },
             _ => {}
           }
