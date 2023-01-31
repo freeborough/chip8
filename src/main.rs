@@ -1,7 +1,6 @@
 mod chip8;
 
 use chip8::Chip8;
-use chip8::util::add_u8;
 
 fn main() {
   println!("Chip8 v0.1");

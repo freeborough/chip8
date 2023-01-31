@@ -1,7 +1,7 @@
 mod registers;
 mod ram;
 mod execute;
-pub mod util;
+mod util;
 mod debug;
 
 /// The first accessable RAM address, leaving space for the font and historically the interpreter.
