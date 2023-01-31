@@ -1,6 +1,7 @@
 mod chip8;
 
 use chip8::Chip8;
+use chip8::debug::*;
 
 fn main() {
   println!("Chip8 v0.1");
@@ -9,4 +10,5 @@ fn main() {
 
   vm.load("./roms/IBM Logo.ch8");
   vm.run();
+  output_vram(vm);
 }
