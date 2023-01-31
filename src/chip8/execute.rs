@@ -86,6 +86,7 @@ impl Chip8 {
                   // Get the current pixel from the byte.
                   let pixel = (data & bit_mask) >> (7 - col);
 
+                  // TODO: Ensure screen_x and screen_y are within the bounds of the screen.
                   // Calculate the coordinates of this pixel.
                   let screen_x = x + col as usize;
                   let screen_y = y + row as usize;
