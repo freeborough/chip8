@@ -1,6 +1,6 @@
-use super::{Chip8, START_ADDRESS};
+use super::{Chip8};
 use super::debug::output_instruction;
-use super::util::get_nnn;
+use super::util::*;
 
 impl Chip8 {
     pub fn run(self: &mut Self) {
@@ -46,8 +46,12 @@ impl Chip8 {
               self.pc = address;
             },
             // 6 Set (Register)
+            // 6XNN Set register X to NN
             0x6 => {
-              // TODO: Implement 6XNN Set Register
+              let x = get_x(instruction);
+              let nn = get_nn(instruction);
+
+              self.v[x as usize] = nn;
             }
             _ => {}
           }
