@@ -7,10 +7,9 @@ impl Chip8 {
         self.is_running = true;
 
         loop {
-            if self.is_running {
-                self.cycle();
-            } else {
-                break;
+            match self.is_running {
+              true => self.cycle(),
+              false => break,
             }
         }
     }
