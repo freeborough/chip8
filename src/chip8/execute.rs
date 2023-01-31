@@ -44,15 +44,24 @@ impl Chip8 {
               println!("JUMP: {:03X}", address);
       
               self.pc = address;
+              // DEBUG:
+              std::process::exit(0);
             },
             // 6 Set (Register)
             // 6XNN Set register X to NN
             0x6 => {
-              let x = get_x(instruction);
+              let x = get_x(instruction) as usize;
               let nn = get_nn(instruction);
-
-              self.v[x as usize] = nn;
-            }
+              println!("SET v{x} to {nn}");
+              self.v[x] = nn;
+            },
+            // 0x7XNN Add NN to register X
+            0x7 => {
+              let x = get_x(instruction) as usize;
+              let nn = get_nn(instruction);
+              println!("ADD {nn} to v{x}");
+              self.v[x] = add_u8(self.v[x], nn);
+            },
             _ => {}
           }
 

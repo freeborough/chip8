@@ -13,8 +13,8 @@ fn main() {
   
   /*
   00E0 (clear screen)
-  1NNN (jump)
-  6XNN (set register VX)
+  ** 1NNN (jump)
+  ** 6XNN (set register VX)
   7XNN (add value to register VX)
   ANNN (set index register I)
   DXYN (display/draw)
