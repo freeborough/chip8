@@ -2,6 +2,7 @@ use super::Chip8;
 use super::util::format_instruction;
 
 impl Chip8 {
+    #[allow(dead_code)]
     pub fn debug(self: &Self) {
         println!("PC: {}", self.pc);
     }
