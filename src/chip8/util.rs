@@ -1,4 +1,4 @@
-use super::{SCREEN_WIDTH, SCREEN_HEIGHT};
+use super::SCREEN_WIDTH;
 
 pub fn format_instruction(instruction: u16) -> String {
     format!("{:04X}", instruction)
